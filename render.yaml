@@ -1,0 +1,12 @@
+# Render Blueprint — دیپلوی خودکار سئو ایجنت
+# https://render.com/docs/blueprint-spec
+services:
+  - type: web
+    name: seo-agent
+    runtime: python
+    plan: free
+    startCommand: python app.py
+    healthCheckPath: /api/health
+    envVars:
+      - key: AGENT_TOKEN
+        sync: false   # بعد از دیپلوی در داشبورد ست می‌شود

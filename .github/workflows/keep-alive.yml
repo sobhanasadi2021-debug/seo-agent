@@ -1,0 +1,16 @@
+name: keep-alive
+# پینگ هر ۱۰ دقیقه تا سرویس رایگان Render به خواب نرود (۲۴/۷)
+on:
+  schedule:
+    - cron: "*/10 * * * *"
+  workflow_dispatch:
+
+jobs:
+  ping:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Ping /api/health
+        run: |
+          curl -fsS --max-time 30 -o /dev/null "${{ secrets.RENDER_URL }}/api/health" \
+            && echo "pong $(date -u)" \
+            || echo "ping failed (service may be redeploying)"
