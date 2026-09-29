@@ -8,5 +8,7 @@ services:
     startCommand: python app.py
     healthCheckPath: /api/health
     envVars:
+      - key: HOST
+        value: 0.0.0.0
       - key: AGENT_TOKEN
         sync: false   # بعد از دیپلوی در داشبورد ست می‌شود

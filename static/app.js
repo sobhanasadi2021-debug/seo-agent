@@ -4,15 +4,45 @@
 const $ = (id) => document.getElementById(id);
 const $$ = (sel) => document.querySelectorAll(sel);
 
-/* توکن دسترسی (برای دیپلوی عمومی با AGENT_TOKEN) — از ?token= خوانده و ذخیره می‌شود */
-const TOKEN = (() => {
+/* توکن دسترسی فقط در localStorage می‌ماند — هرگز در URL نمی‌آید.
+   اگر ?token= در لینک بود، یک‌بار ذخیره و بلافاصله از نوار آدرس پاک می‌شود. */
+let TOKEN = (() => {
   try {
     const t = new URLSearchParams(location.search).get("token");
-    if (t) { localStorage.setItem("agentToken", t); return t; }
+    if (t) {
+      localStorage.setItem("agentToken", t);
+      history.replaceState(null, "", location.pathname + location.search.replace(/[?&]token=[^&]*/, ""));
+      return t;
+    }
     return localStorage.getItem("agentToken") || "";
   } catch { return ""; }
 })();
-const withToken = (p) => (TOKEN ? p + (p.includes("?") ? "&" : "?") + "token=" + encodeURIComponent(TOKEN) : p);
+const saveToken = (t) => {
+  TOKEN = (t || "").trim();
+  try { TOKEN ? localStorage.setItem("agentToken", TOKEN) : localStorage.removeItem("agentToken"); } catch {}
+};
+const authHeaders = () => (TOKEN ? { "X-Agent-Token": TOKEN } : {});
+const withToken = (p) => p; // سازگاری با کدهای قدیمی — توکن دیگر در URL قرار نمی‌گیرد
+
+/* باز کردن/دانلود گزارش بدون قراردادن توکن در URL */
+async function openReport(path) {
+  try {
+    const res = await fetch(path, { headers: authHeaders() });
+    if (res.status === 401) { askForToken(); throw new Error("توکن نامعتبر است"); }
+    if (!res.ok) throw new Error(`خطای سرور (${res.status})`);
+    const blob = await res.blob();
+    const url = URL.createObjectURL(blob);
+    window.open(url, "_blank");
+    setTimeout(() => URL.revokeObjectURL(url), 60000);
+  } catch (e) { toast(e.message || "باز کردن گزارش ناموفق بود", "err"); }
+}
+
+function askForToken() {
+  const t = prompt("توکن دسترسی به ایجنت را وارد کنید:\n(همان مقدار AGENT_TOKEN سرور)", TOKEN || "");
+  if (t === null) return false;
+  saveToken(t);
+  return true;
+}
 
 const state = {
   theme: localStorage.getItem("theme") || "dark",
@@ -59,8 +89,12 @@ function downloadBlob(content, filename, type) {
 }
 
 async function api(path, opts = {}) {
-  const res = await fetch(withToken(path), { headers: { "Content-Type": "application/json" }, ...opts });
+  const res = await fetch(path, { headers: { "Content-Type": "application/json", ...authHeaders() }, ...opts });
   const data = await res.json().catch(() => ({}));
+  if (res.status === 401) {
+    if (askForToken()) return api(path, opts); // توکن جدید ذخیره شد — دوباره تلاش کن
+    throw new Error("توکن نامعتبر است");
+  }
   if (!res.ok || data.ok === false) throw new Error(data.error || `خطای سرور (${res.status})`);
   return data;
 }
@@ -87,6 +121,7 @@ function applyTheme() {
 $$(".nav-btn").forEach((b) => b.addEventListener("click", () => switchTab(b.dataset.tab)));
 $$("[data-goto]").forEach((b) => b.addEventListener("click", () => switchTab(b.dataset.goto)));
 $("themeBtn").addEventListener("click", () => { state.theme = state.theme === "dark" ? "light" : "dark"; applyTheme(); });
+$("tokenBtn").addEventListener("click", () => { askForToken(); toast(TOKEN ? "توکن ذخیره شد ✓" : "توکن پاک شد", TOKEN ? "ok" : "err"); });
 
 /* ---------------- وضعیت سرور ---------------- */
 async function checkHealth() {
@@ -301,16 +336,17 @@ function setBadge(el, label, ok, extra = "") {
 }
 
 /* دکمه‌های خروجی گزارش */
-$("btnHtml").addEventListener("click", () => state.taskId && window.open(withToken(`/api/report/html?id=${state.taskId}`), "_blank"));
+$("btnHtml").addEventListener("click", () => state.taskId && openReport(`/api/report/html?id=${state.taskId}`));
 $("btnJson").addEventListener("click", () => {
   if (!state.analysis) return;
   downloadBlob(JSON.stringify(state.analysis, null, 2), "seo-report.json", "application/json; charset=utf-8");
 });
-$("btnCsv").addEventListener("click", () => state.taskId && window.open(withToken(`/api/report/csv?id=${state.taskId}`), "_blank"));
+$("btnCsv").addEventListener("click", () => state.taskId && openReport(`/api/report/csv?id=${state.taskId}`));
 $("btnCopy").addEventListener("click", async () => {
   if (!state.taskId) return;
   try {
-    const res = await fetch(withToken(`/api/report/text?id=${state.taskId}`));
+    const res = await fetch(`/api/report/text?id=${state.taskId}`, { headers: authHeaders() });
+    if (res.status === 401) { askForToken(); return; }
     copyText(await res.text());
   } catch { toast("دریافت گزارش ناموفق بود", "err"); }
 });
@@ -455,7 +491,7 @@ $("btnLogCopy").addEventListener("click", () => {
 $("btnLogDownload").addEventListener("click", () => {
   downloadBlob([...$("aLog").children].map((ln) => ln.innerText).join("\n"), "auto-seo-log.txt", "text/plain; charset=utf-8");
 });
-$("btnAutoHtml").addEventListener("click", () => state.autoTaskId && window.open(withToken(`/api/report/html?id=${state.autoTaskId}`), "_blank"));
+$("btnAutoHtml").addEventListener("click", () => state.autoTaskId && openReport(`/api/report/html?id=${state.autoTaskId}`));
 
 /* ---------------- تاریخچه ---------------- */
 async function loadHistory() {
@@ -501,7 +537,7 @@ function renderHistory(history) {
       }
     } catch (e) { toast(e.message, "err"); }
   }));
-  tb.querySelectorAll("[data-html]").forEach((b) => b.addEventListener("click", () => window.open(withToken(`/api/report/html?id=${b.dataset.html}`), "_blank")));
+  tb.querySelectorAll("[data-html]").forEach((b) => b.addEventListener("click", () => openReport(`/api/report/html?id=${b.dataset.html}`)));
   tb.querySelectorAll("[data-del]").forEach((b) => b.addEventListener("click", async () => {
     if (!confirm("این مورد از تاریخچه حذف شود؟")) return;
     try { await api(`/api/history/${b.dataset.del}`, { method: "DELETE" }); toast("حذف شد ✓"); loadHistory(); }

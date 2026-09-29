@@ -37,6 +37,10 @@ class Handler(BaseHTTPRequestHandler):
         self.send_header("Content-Type", ctype)
         self.send_header("Content-Length", str(len(body)))
         self.send_header("Cache-Control", "no-store")
+        # هدرهای امنیتی برای اجرای روی هاست عمومی
+        self.send_header("X-Content-Type-Options", "nosniff")
+        self.send_header("X-Frame-Options", "DENY")
+        self.send_header("Referrer-Policy", "no-referrer")
         for k, v in (extra or {}).items():
             self.send_header(k, v)
         self.end_headers()
@@ -237,7 +241,13 @@ h1{{font-size:20px}} .muted{{color:#777;font-size:13px}}</style></head><body>
 <h2>توصیه‌های بعدی</h2><ul>{recs}</ul></body></html>"""
 
     def log_message(self, fmt, *args):
-        sys.stdout.write(f"[http] {fmt % args}\n")
+        # لاگ بدون query string تا هیچ توکن/داده‌ای در لاگ‌های سرور نماند
+        try:
+            if args and isinstance(args[0], str) and "?" in args[0]:
+                args = (args[0].split("?", 1)[0],) + args[1:]
+            sys.stdout.write(f"[http] {fmt % args}\n")
+        except Exception:
+            pass
 
 
 def main():
