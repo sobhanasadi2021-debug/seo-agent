@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>سئو ایجنت | تحلیل و بهینه‌سازی SEO + GEO</title>
+<link rel="icon" type="image/svg+xml" href="/static/logo.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+
+<!-- ===== نوار بالا ===== -->
+<header class="topbar">
+  <div class="brand">
+    <span class="brand-logo"><img src="/static/logo.svg" alt="" width="34" height="34"></span>
+    <span class="brand-text"><b>سئو ایجنت</b><small>تحلیل و بهینه‌سازی SEO + GEO</small></span>
+  </div>
+  <nav class="nav" id="mainNav">
+    <button class="nav-btn active" data-tab="dashboard">🏠 داشبورد</button>
+    <button class="nav-btn" data-tab="manual">🔎 تحلیل و مشاوره</button>
+    <button class="nav-btn" data-tab="auto">⚡ سئوی خودکار</button>
+    <button class="nav-btn" data-tab="history">🗂 تاریخچه</button>
+    <button class="nav-btn" data-tab="guide">📖 راهنما</button>
+  </nav>
+  <div class="top-actions">
+    <span id="serverDot" class="dot dot-off" title="وضعیت سرور"></span>
+    <button id="themeBtn" class="icon-btn" title="تغییر تم روشن/تاریک">🌙</button>
+  </div>
+</header>
+
+<main>
+
+<!-- ================= داشبورد ================= -->
+<section id="tab-dashboard" class="tab active">
+  <div class="hero">
+    <h1>سایت‌ات را به رتبه‌های اول برسان 🚀</h1>
+    <p>تحلیل کامل سئو، بهینه‌سازی برای موتورهای هوش مصنوعی (GEO) و اجرای خودکار بهبودها روی وردپرس — همه در یک پنل.</p>
+    <div class="hero-run">
+      <input id="dashQuickUrl" type="text" dir="ltr" placeholder="https://example.com یا localhost:3000" autocomplete="off">
+      <button id="dashQuickRun" class="btn btn-primary">شروع تحلیل سریع</button>
+    </div>
+  </div>
+
+  <div class="grid grid-4">
+    <div class="stat-card">
+      <span class="stat-icon">🎯</span>
+      <div><b id="dashScore">—</b><small>امتیاز آخرین تحلیل</small></div>
+    </div>
+    <div class="stat-card">
+      <span class="stat-icon">📄</span>
+      <div><b id="dashPages">—</b><small>صفحات بررسی‌شده</small></div>
+    </div>
+    <div class="stat-card">
+      <span class="stat-icon">🛠</span>
+      <div><b id="dashRecs">—</b><small>توصیه‌های باز</small></div>
+    </div>
+    <div class="stat-card">
+      <span class="stat-icon">🟢</span>
+      <div><b id="dashServer">—</b><small>وضعیت سرور ایجنت</small></div>
+    </div>
+  </div>
+
+  <div class="grid grid-2">
+    <div class="card">
+      <div class="card-head"><h3>⚡ دسترسی سریع</h3></div>
+      <div class="quick-actions">
+        <button class="qa" data-goto="manual"><b>🔎 تحلیل و مشاوره دستی</b><small>آدرس سایت را بده تا سئو و GEO کامل بررسی شود</small></button>
+        <button class="qa" data-goto="auto"><b>⚡ سئوی خودکار وردپرس</b><small>اتصال با اطلاعات مدیر و اجرای خودکار بهبودها</small></button>
+        <button class="qa" data-goto="history"><b>🗂 تاریخچه تحلیل‌ها</b><small>گزارش‌های قبلی را ببین و دانلود کن</small></button>
+        <button class="qa" data-goto="guide"><b>📖 راهنمای استفاده</b><small>همه‌چیز درباره دو حالت دستی و خودکار</small></button>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-head"><h3>🕘 آخرین تحلیل‌ها</h3><button class="btn btn-ghost btn-sm" data-goto="history">همه</button></div>
+      <div class="table-wrap"><table class="table" id="dashRecentTable">
+        <thead><tr><th>سایت</th><th>امتیاز</th><th>زمان</th><th></th></tr></thead>
+        <tbody></tbody>
+      </table></div>
+      <p class="empty" id="dashRecentEmpty">هنوز تحلیلی ثبت نشده است.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ================= تحلیل و مشاوره (دستی) ================= -->
+<section id="tab-manual" class="tab">
+  <div class="card form-card">
+    <div class="card-head"><h3>🔎 تحلیل دستی و مشاوره سئو</h3><p class="muted">آدرس سایت را بده؛ ایجنت خزش می‌کند، امتیاز سئو و GEO می‌دهد، کلمات کلیدی استخراج می‌کند و راهکار می‌نویسد.</p></div>
+    <div class="form-row">
+      <div class="field grow"><label>آدرس سایت (لوکال هم قبول است)</label><input id="mUrl" type="text" dir="ltr" placeholder="https://example.com یا localhost:3000" autocomplete="off"></div>
+      <div class="field"><label>تعداد صفحات</label>
+        <select id="mPages"><option value="1">فقط صفحه اصلی</option><option value="5">۵ صفحه</option><option value="8" selected>۸ صفحه</option><option value="12">۱۲ صفحه</option></select>
+      </div>
+      <div class="field"><label>فاصله خزش</label>
+        <select id="mDelay"><option value="0.1">سریع</option><option value="0.3" selected>معمولی</option><option value="0.6">آرام</option></select>
+      </div>
+    </div>
+    <div class="form-row between">
+      <label class="check"><input id="mSsl" type="checkbox"><span>نادیده‌گرفتن خطای گواهی SSL</span></label>
+      <button id="runBtn" class="btn btn-primary btn-lg">▶ شروع تحلیل</button>
+    </div>
+    <div id="mProgress" class="progress-wrap hidden">
+      <div class="progress-head"><span id="mStep">آماده‌سازی…</span><b id="mPct">0٪</b></div>
+      <div class="progress"><div class="progress-fill" id="mBar"></div></div>
+      <button id="mCancel" class="btn btn-ghost btn-sm">✕ لغو تحلیل</button>
+    </div>
+    <div id="mSteps" class="terminal hidden"></div>
+  </div>
+
+  <!-- نتیجه -->
+  <div id="mResults" class="hidden">
+    <div class="card result-head-card">
+      <div class="ring-wrap">
+        <svg viewBox="0 0 120 120" class="ring">
+          <circle class="ring-bg" cx="60" cy="60" r="52"/>
+          <circle class="ring-fg" id="ringFg" cx="60" cy="60" r="52"/>
+        </svg>
+        <div class="ring-center"><b id="ringScore">0</b><span id="ringGrade">-</span></div>
+      </div>
+      <div class="result-meta">
+        <h2>گزارش تحلیل</h2>
+        <p dir="ltr" class="ltr" id="rUrl"></p>
+        <p class="muted" id="rTime"></p>
+        <div class="btn-row">
+          <button id="btnHtml" class="btn btn-outline btn-sm">⬇ گزارش HTML</button>
+          <button id="btnJson" class="btn btn-outline btn-sm">⬇ JSON</button>
+          <button id="btnCsv" class="btn btn-outline btn-sm">⬇ CSV (اکسل)</button>
+          <button id="btnCopy" class="btn btn-outline btn-sm">📋 کپی متن گزارش</button>
+          <button id="btnRerun" class="btn btn-ghost btn-sm">🔄 تحلیل مجدد</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="card" id="catCard">
+      <div class="card-head"><h3>📊 امتیاز بر اساس دسته</h3></div>
+      <div id="catBars" class="cat-bars"></div>
+    </div>
+
+    <div class="card" id="serpCard">
+      <div class="card-head"><h3>🖥 پیش‌نمایش نتیجه در گوگل</h3></div>
+      <div class="serp">
+        <div class="serp-url" id="serpUrl" dir="ltr"></div>
+        <div class="serp-title" id="serpTitle"></div>
+        <div class="serp-desc" id="serpDesc"></div>
+      </div>
+      <div class="form-row between" style="margin-top:12px">
+        <span class="muted">پیشنهاد ایجنت برای عنوان بهتر:</span>
+        <b id="serpTitleSuggest"></b>
+      </div>
+    </div>
+
+    <div class="card" id="kwCard">
+      <div class="card-head"><h3>🔑 کلمات کلیدی شناسایی‌شده</h3>
+        <div class="btn-row">
+          <button id="btnCopyKws" class="btn btn-outline btn-sm">📋 کپی همه کلمات</button>
+        </div>
+      </div>
+      <div class="chips" id="kwPrimary"></div>
+      <div class="chips" id="kwSecondary"></div>
+      <div class="table-wrap"><table class="table" id="kwTable">
+        <thead><tr><th>عبارت</th><th>تکرار</th><th>وزن</th><th>در عنوان</th><th>در تیترها</th></tr></thead>
+        <tbody></tbody>
+      </table></div>
+    </div>
+
+    <div class="card" id="geoCard">
+      <div class="card-head"><h3>🤖 GEO — بهینه‌سازی برای موتورهای هوش مصنوعی</h3></div>
+      <div class="geo-badges">
+        <span class="badge" id="llmsBadge">llms.txt: —</span>
+        <span class="badge" id="faqBadge">پرسش‌وپاسخ: —</span>
+        <span class="badge" id="schemaBadge">Schema: —</span>
+      </div>
+      <div class="table-wrap"><table class="table" id="geoBots">
+        <thead><tr><th>ربات</th><th>سازمان</th><th>کاربرد</th><th>وضعیت</th></tr></thead>
+        <tbody></tbody>
+      </table></div>
+      <p class="muted">برای دیده‌شدن در پاسخ‌های ChatGPT و Perplexity و Gemini، ربات‌های AI نباید مسدود باشند؛ llms.txt و FAQ Schema هم سیگنال‌های مهم GEO هستند.</p>
+    </div>
+
+    <div class="card" id="checksCard">
+      <div class="card-head"><h3>✅ نتایج کامل بررسی‌ها</h3>
+        <div class="chips filter" id="checkFilter">
+          <button class="chip active" data-filter="all">همه</button>
+          <button class="chip" data-filter="meta">متا</button>
+          <button class="chip" data-filter="content">محتوا</button>
+          <button class="chip" data-filter="technical">فنی</button>
+          <button class="chip" data-filter="geo">GEO</button>
+          <button class="chip" data-filter="structure">ساختار</button>
+        </div>
+      </div>
+      <div class="table-wrap"><table class="table" id="checksTable">
+        <thead><tr><th></th><th>بررسی</th><th>جزئیات</th><th>دسته</th></tr></thead>
+        <tbody></tbody>
+      </table></div>
+    </div>
+
+    <div class="card" id="recsCard">
+      <div class="card-head"><h3>🛠 توصیه‌های بهبود</h3><button id="btnCopyRecs" class="btn btn-outline btn-sm">📋 کپی توصیه‌ها</button></div>
+      <div id="recsList" class="recs"></div>
+    </div>
+
+    <div class="card" id="crawlCard">
+      <div class="card-head"><h3>📄 صفحات بررسی‌شده</h3></div>
+      <div class="table-wrap"><table class="table" id="crawlTable">
+        <thead><tr><th>آدرس</th><th>وضعیت</th><th>کلمات</th><th>H1</th><th>توضیحات</th><th>تصاویر بدون alt</th></tr></thead>
+        <tbody></tbody>
+      </table></div>
+      <div id="brokenBox" class="broken-box hidden">
+        <h4>🔗 لینک‌های خراب</h4>
+        <ul id="brokenList"></ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= سئوی خودکار ================= -->
+<section id="tab-auto" class="tab">
+  <div class="card form-card">
+    <div class="card-head"><h3>⚡ سئوی خودکار (اتصال به سایت)</h3>
+      <p class="muted">اطلاعات مدیر وردپرس را بده؛ ایجنت وارد می‌شود، سایت را تحلیل و بهبودهای سئو را خودکار اعمال می‌کند. 🔒 اطلاعات فقط در حافظه نگه‌داری می‌شود و ذخیره نمی‌شود.</p></div>
+    <div class="form-row">
+      <div class="field grow"><label>آدرس سایت * (لوکال هم قبول است)</label><input id="aSite" type="text" dir="ltr" placeholder="https://example.com یا localhost:3000" autocomplete="off"></div>
+      <div class="field grow"><label>آدرس پنل ادمین</label><input id="aAdmin" type="text" dir="ltr" placeholder="https://example.com/wp-admin" autocomplete="off"></div>
+    </div>
+    <div class="form-row">
+      <div class="field grow"><label>نام کاربری مدیر *</label><input id="aUser" type="text" dir="ltr" autocomplete="off"></div>
+      <div class="field grow"><label>رمز عبور / Application Password *</label>
+        <div class="pass-wrap">
+          <input id="aPass" type="password" dir="ltr" autocomplete="new-password">
+          <button id="aPassToggle" class="icon-btn" title="نمایش/مخفی">👁</button>
+        </div>
+      </div>
+      <div class="field"><label>تعداد مطالب</label>
+        <select id="aLimit"><option value="5">۵ مطلب</option><option value="10" selected>۱۰ مطلب</option><option value="20">۲۰ مطلب</option></select>
+      </div>
+    </div>
+    <div class="form-row wrap">
+      <label class="check"><input id="cBlogDesc" type="checkbox" checked><span>تکمیل توضیح کوتاه سایت (اگر خالی باشد)</span></label>
+      <label class="check"><input id="cMetaDesc" type="checkbox" checked><span>افزودن متا دیسکریپشن به مطالب</span></label>
+      <label class="check"><input id="cFocusKw" type="checkbox" checked><span>ثبت کلمه کلیدی فوکوس (Yoast/RankMath)</span></label>
+      <label class="check"><input id="cTags" type="checkbox"><span>افزودن تگ‌های پیشنهادی</span></label>
+      <label class="check"><input id="cOnlyAnalyze" type="checkbox"><span>فقط تحلیل، بدون هیچ تغییری</span></label>
+      <label class="check"><input id="aSsl" type="checkbox"><span>نادیده‌گرفتن خطای SSL</span></label>
+    </div>
+    <div class="form-row between">
+      <div class="btn-row">
+        <button id="testBtn" class="btn btn-outline">🔌 تست اتصال</button>
+        <button id="autoRunBtn" class="btn btn-primary btn-lg">▶ شروع سئوی خودکار</button>
+        <button id="autoCancelBtn" class="btn btn-danger hidden">✕ لغو</button>
+      </div>
+      <span id="testResult" class="test-result"></span>
+    </div>
+    <div id="aProgress" class="progress-wrap hidden">
+      <div class="progress-head"><span id="aStep">آماده‌سازی…</span><b id="aPct">0٪</b></div>
+      <div class="progress"><div class="progress-fill" id="aBar"></div></div>
+    </div>
+  </div>
+
+  <div class="card hidden" id="autoLogCard">
+    <div class="card-head"><h3>📌 گزارش زنده اجرا</h3>
+      <div class="btn-row">
+        <button id="btnLogCopy" class="btn btn-outline btn-sm">📋 کپی لاگ</button>
+        <button id="btnLogDownload" class="btn btn-outline btn-sm">⬇ دانلود لاگ</button>
+      </div>
+    </div>
+    <div id="aLog" class="terminal tall"></div>
+  </div>
+
+  <div class="card hidden" id="autoSummaryCard">
+    <div class="card-head"><h3>🎉 خلاصه نتیجه</h3></div>
+    <div class="grid grid-3" id="autoSummaryStats"></div>
+    <div id="autoChanges"></div>
+    <div class="btn-row" style="margin-top:14px">
+      <button id="btnAutoHtml" class="btn btn-outline btn-sm">⬇ دانلود گزارش HTML</button>
+    </div>
+  </div>
+</section>
+
+<!-- ================= تاریخچه ================= -->
+<section id="tab-history" class="tab">
+  <div class="card">
+    <div class="card-head"><h3>🗂 تاریخچه تحلیل‌ها و اجراها</h3>
+      <div class="btn-row">
+        <button id="histRefresh" class="btn btn-ghost btn-sm">🔄 بروزرسانی</button>
+        <button id="histClear" class="btn btn-danger btn-sm">🗑 پاک‌کردن همه</button>
+      </div>
+    </div>
+    <div class="table-wrap"><table class="table" id="histTable">
+      <thead><tr><th>زمان</th><th>نوع</th><th>سایت</th><th>نتیجه</th><th>عملیات</th></tr></thead>
+      <tbody></tbody>
+    </table></div>
+    <p class="empty" id="histEmpty">تاریخچه خالی است — اولین تحلیل را از تب «تحلیل و مشاوره» شروع کنید.</p>
+  </div>
+</section>
+
+<!-- ================= راهنما ================= -->
+<section id="tab-guide" class="tab">
+  <div class="grid grid-2">
+    <div class="card">
+      <div class="card-head"><h3>🔎 حالت دستی — تحلیل و مشاوره</h3></div>
+      <ol class="steps">
+        <li>به تب «تحلیل و مشاوره» برو و فقط <b>آدرس سایت</b> را وارد کن.</li>
+        <li>سایت‌های لوکال هم کار می‌کنند؛ مثلاً <b dir="ltr">localhost:3000</b> یا <b dir="ltr">127.0.0.1:8000</b> — ایجنت خودش http را تشخیص می‌دهد.</li>
+        <li>دکمه «شروع تحلیل» را بزن؛ ایجنت صفحه اصلی و صفحات داخلی را می‌خزد.</li>
+        <li>گزارش کامل می‌آید: امتیاز ۰-۱۰۰، گرید، بررسی‌های فنی، کلمات کلیدی، وضعیت GEO و ربات‌های AI.</li>
+        <li>از بخش «توصیه‌های بهبود» اولویت‌دار شروع کن؛ هر مورد راهکار عملی فارسی دارد.</li>
+        <li>گزارش را HTML یا CSV (اکسل) دانلود کن و برای تیم بفرست — یا متن گزارش را کپی کن.</li>
+      </ol>
+    </div>
+    <div class="card">
+      <div class="card-head"><h3>⚡ حالت خودکار — اتصال به وردپرس</h3></div>
+      <ol class="steps">
+        <li>آدرس سایت + آدرس پنل ادمین + نام کاربری و رمز مدیر را وارد کن.</li>
+        <li>اول «تست اتصال» را بزن تا از درستی اطلاعات مطمئن شوی.</li>
+        <li>اقدامات دلخواه را تیک بزن (متا دیسکریپشن، کلمه کلیدی، تگ، توضیح سایت).</li>
+        <li>«شروع سئوی خودکار» را بزن و لاگ زنده را ببین؛ هر لحظه می‌توانی لغو کنی.</li>
+        <li>خلاصه تغییرات را ببین و گزارش HTML را دانلود کن.</li>
+      </ol>
+      <div class="note">💡 <b>پیشنهاد امن:</b> به‌جای رمز اصلی، از <b>Application Password</b> استفاده کن: وردپرس ← کاربران ← پروفایل ← Application Passwords. اگر افزونه غیرفعال‌کننده XML-RPC داری، ایجنت به‌طور خودکار از REST API استفاده می‌کند.</div>
+    </div>
+    <div class="card">
+      <div class="card-head"><h3>🤖 GEO چیست؟</h3></div>
+      <p>GEO (Generative Engine Optimization) یعنی بهینه‌سازی برای موتورهای پاسخ هوش مصنوعی مثل ChatGPT، Perplexity و Gemini. ایجنت این موارد را بررسی و اصلاح می‌کند:</p>
+      <ul class="bullets">
+        <li>مسدود نبودن ربات‌های AI در robots.txt (GPTBot، ClaudeBot، PerplexityBot و…)</li>
+        <li>وجود فایل <b>llms.txt</b> برای معرفی سایت به مدل‌های زبانی</li>
+        <li>داده ساختاریافته (Schema) به‌ویژه FAQPage و Article و Breadcrumb</li>
+        <li>پاراگراف‌های کوتاه قابل نقل‌قول + تاریخ انتشار + نام نویسنده (سیگنال E-E-A-T)</li>
+      </ul>
+    </div>
+    <div class="card">
+      <div class="card-head"><h3>🔒 امنیت و محدودیت‌ها</h3></div>
+      <ul class="bullets">
+        <li>رمز عبور فقط در حافظه سرور محلی نگه‌داری می‌شود و هرگز روی دیسک ذخیره نمی‌شود.</li>
+        <li>به‌صورت پیش‌فرض سرور فقط روی <b>127.0.0.1</b> (کامپیوتر خودت) اجرا می‌شود؛ از اینترنت قابل دسترسی نیست.</li>
+        <li>در حالت خودکار، فیلدهایی که قبلاً پر شده‌اند بازنویسی نمی‌شوند.</li>
+        <li>تغییر فایل‌های قالب و robots.txt به‌صورت مستقیم انجام نمی‌شود؛ توصیه دقیق آن در گزارش می‌آید.</li>
+        <li>برخی هاست‌ها XML-RPC را می‌بندند — ایجنت خودکار به REST API سوئیچ می‌کند.</li>
+        <li>اگر روی هاست عمومی دیپلوی کردی، متغیر محیطی <b dir="ltr">AGENT_TOKEN</b> را ست کن تا APIها قفل شوند؛ سپس پنل را با <b dir="ltr">?token=...</b> باز کن.</li>
+        <li>تحلیل «localhost» یعنی لوکالِ همان سیستمی که ایجنت روی آن اجراست؛ روی هاست ابری، لوکالِ همان سرور است.</li>
+      </ul>
+    </div>
+    <div class="card">
+      <div class="card-head"><h3>🌍 استقرار رایگان (دیپلوی)</h3></div>
+      <ul class="bullets">
+        <li><b>Render</b> — راحت‌ترین: New Web Service از گیت؛ Start Command را <b dir="ltr">python app.py</b> بگذار؛ پورت خودکار از متغیر PORT خوانده می‌شود. پلن رایگان بعد از ۱۵ دقیقه بی‌فعالیتی می‌خوابد.</li>
+        <li><b>Hugging Face Spaces</b> — رایگان؛ SDK را Docker انتخاب کن و همین پوشه را push کن (Dockerfile آماده است، پورت 7860).</li>
+        <li><b>Koyeb</b> — یک سرویس رایگان Docker/Python.</li>
+        <li><b>Oracle Cloud Always Free</b> — یک VM واقعی همیشه‌روشن (نیازمند ثبت‌نام با کارت).</li>
+        <li>⚠️ <b>PythonAnywhere</b> پلن رایگان مناسب نیست: خروج اینترنت به دامنه‌های دلخواه محدود است و خزش سایت‌ها کار نمی‌کند.</li>
+        <li>⚠️ Vercel / Netlify / Cloudflare Workers مناسب نیستند (serverless و بدون پروسه ماندگار).</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="footer">
+  <span>سئو ایجنت — تحلیلگر SEO + GEO</span>
+  <span class="muted" dir="ltr">127.0.0.1:8791</span>
+</footer>
+
+<div id="toasts" class="toasts"></div>
+<script src="/static/app.js"></script>
+</body>
+</html>

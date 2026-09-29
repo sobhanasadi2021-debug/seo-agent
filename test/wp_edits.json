@@ -1,0 +1,403 @@
+[
+ {
+  "action": "setOptions",
+  "data": {
+   "blog_description": "تک‌شاپ | مرجع تخصصی تک شاپ و لپ تاپ با مقالات راهنما و نکات کاربردی"
+  }
+ },
+ {
+  "action": "editPost",
+  "data": {
+   "post_id": "101",
+   "content": {
+    "custom_fields": [
+     {
+      "key": "_yoast_wpseo_metadesc",
+      "value": "راهنمای کامل خرید لپ‌تاپ گرافیکی برای طراحان. لپ‌تاپ گرافیکی مناسب باید کارت گرافیک قوی و پردازنده نسل جدید داشته باشد."
+     }
+    ]
+   }
+  }
+ },
+ {
+  "action": "editPost",
+  "data": {
+   "post_id": "101",
+   "content": {
+    "custom_fields": [
+     {
+      "key": "_yoast_wpseo_focuskw",
+      "value": "لپ تاپ"
+     }
+    ]
+   }
+  }
+ },
+ {
+  "action": "editPost",
+  "data": {
+   "post_id": "101",
+   "content": {
+    "terms_names": {
+     "post_tag": [
+      "لپ تاپ",
+      "تاپ گرافیکی",
+      "خرید لپ"
+     ]
+    }
+   }
+  }
+ },
+ {
+  "action": "editPost",
+  "data": {
+   "post_id": "102",
+   "content": {
+    "custom_fields": [
+     {
+      "key": "_yoast_wpseo_focuskw",
+      "value": "گوشی پرچمدار"
+     }
+    ]
+   }
+  }
+ },
+ {
+  "action": "editPost",
+  "data": {
+   "post_id": "102",
+   "content": {
+    "terms_names": {
+     "post_tag": [
+      "گوشی پرچمدار",
+      "معرفی",
+      "امسال"
+     ]
+    }
+   }
+  }
+ },
+ {
+  "action": "editPost",
+  "data": {
+   "post_id": "101",
+   "content": {
+    "custom_fields": [
+     {
+      "id": "cf1",
+      "key": "_yoast_wpseo_metadesc",
+      "value": "راهنمای کامل خرید لپ‌تاپ گرافیکی برای طراحان. لپ‌تاپ گرافیکی مناسب باید کارت گرافیک قوی و پردازنده نسل جدید داشته باشد."
+     }
+    ]
+   }
+  }
+ },
+ {
+  "action": "editPost",
+  "data": {
+   "post_id": "101",
+   "content": {
+    "custom_fields": [
+     {
+      "id": "cf2",
+      "key": "_yoast_wpseo_focuskw",
+      "value": "لپ تاپ"
+     }
+    ]
+   }
+  }
+ },
+ {
+  "action": "editPost",
+  "data": {
+   "post_id": "101",
+   "content": {
+    "terms_names": {
+     "post_tag": [
+      "لپ تاپ",
+      "تاپ گرافیکی",
+      "خرید لپ",
+      "لپ تاپ گرافیکی",
+      "خرید لپ تاپ"
+     ]
+    }
+   }
+  }
+ },
+ {
+  "action": "editPost",
+  "data": {
+   "post_id": "102",
+   "content": {
+    "custom_fields": [
+     {
+      "id": "cf1",
+      "key": "_yoast_wpseo_focuskw",
+      "value": "گوشی پرچمدار"
+     }
+    ]
+   }
+  }
+ },
+ {
+  "action": "editPost",
+  "data": {
+   "post_id": "102",
+   "content": {
+    "terms_names": {
+     "post_tag": [
+      "گوشی پرچمدار",
+      "معرفی",
+      "امسال",
+      "گوشی",
+      "پرچمدار",
+      "دوربین"
+     ]
+    }
+   }
+  }
+ },
+ {
+  "action": "setOptions",
+  "data": {
+   "blog_description": "تک‌شاپ | مرجع تخصصی تک شاپ و لپ تاپ با مقالات راهنما و نکات کاربردی"
+  }
+ },
+ {
+  "action": "editPost",
+  "data": {
+   "post_id": "101",
+   "content": {
+    "custom_fields": [
+     {
+      "key": "_yoast_wpseo_metadesc",
+      "value": "راهنمای کامل خرید لپ‌تاپ گرافیکی برای طراحان. لپ‌تاپ گرافیکی مناسب باید کارت گرافیک قوی و پردازنده نسل جدید داشته باشد."
+     }
+    ]
+   }
+  }
+ },
+ {
+  "action": "editPost",
+  "data": {
+   "post_id": "101",
+   "content": {
+    "custom_fields": [
+     {
+      "key": "_yoast_wpseo_focuskw",
+      "value": "لپ تاپ"
+     }
+    ]
+   }
+  }
+ },
+ {
+  "action": "editPost",
+  "data": {
+   "post_id": "101",
+   "content": {
+    "terms_names": {
+     "post_tag": [
+      "لپ تاپ",
+      "تاپ گرافیکی",
+      "خرید لپ"
+     ]
+    }
+   }
+  }
+ },
+ {
+  "action": "editPost",
+  "data": {
+   "post_id": "102",
+   "content": {
+    "custom_fields": [
+     {
+      "key": "_yoast_wpseo_focuskw",
+      "value": "گوشی پرچمدار"
+     }
+    ]
+   }
+  }
+ },
+ {
+  "action": "editPost",
+  "data": {
+   "post_id": "102",
+   "content": {
+    "terms_names": {
+     "post_tag": [
+      "گوشی پرچمدار",
+      "معرفی",
+      "امسال"
+     ]
+    }
+   }
+  }
+ },
+ {
+  "action": "editPost",
+  "data": {
+   "post_id": "101",
+   "content": {
+    "custom_fields": [
+     {
+      "id": "cf1",
+      "key": "_yoast_wpseo_metadesc",
+      "value": "راهنمای کامل خرید لپ‌تاپ گرافیکی برای طراحان. لپ‌تاپ گرافیکی مناسب باید کارت گرافیک قوی و پردازنده نسل جدید داشته باشد."
+     }
+    ]
+   }
+  }
+ },
+ {
+  "action": "editPost",
+  "data": {
+   "post_id": "101",
+   "content": {
+    "custom_fields": [
+     {
+      "id": "cf2",
+      "key": "_yoast_wpseo_focuskw",
+      "value": "لپ تاپ"
+     }
+    ]
+   }
+  }
+ },
+ {
+  "action": "editPost",
+  "data": {
+   "post_id": "101",
+   "content": {
+    "terms_names": {
+     "post_tag": [
+      "لپ تاپ",
+      "تاپ گرافیکی",
+      "خرید لپ",
+      "لپ تاپ گرافیکی",
+      "خرید لپ تاپ"
+     ]
+    }
+   }
+  }
+ },
+ {
+  "action": "editPost",
+  "data": {
+   "post_id": "102",
+   "content": {
+    "custom_fields": [
+     {
+      "id": "cf1",
+      "key": "_yoast_wpseo_focuskw",
+      "value": "گوشی پرچمدار"
+     }
+    ]
+   }
+  }
+ },
+ {
+  "action": "editPost",
+  "data": {
+   "post_id": "102",
+   "content": {
+    "terms_names": {
+     "post_tag": [
+      "گوشی پرچمدار",
+      "معرفی",
+      "امسال",
+      "گوشی",
+      "پرچمدار",
+      "دوربین"
+     ]
+    }
+   }
+  }
+ },
+ {
+  "action": "editPost",
+  "data": {
+   "post_id": "101",
+   "content": {
+    "custom_fields": [
+     {
+      "id": "cf1",
+      "key": "_yoast_wpseo_metadesc",
+      "value": "راهنمای کامل خرید لپ‌تاپ گرافیکی برای طراحان. لپ‌تاپ گرافیکی مناسب باید کارت گرافیک قوی و پردازنده نسل جدید داشته باشد."
+     }
+    ]
+   }
+  }
+ },
+ {
+  "action": "editPost",
+  "data": {
+   "post_id": "101",
+   "content": {
+    "custom_fields": [
+     {
+      "id": "cf2",
+      "key": "_yoast_wpseo_focuskw",
+      "value": "لپ تاپ"
+     }
+    ]
+   }
+  }
+ },
+ {
+  "action": "editPost",
+  "data": {
+   "post_id": "101",
+   "content": {
+    "terms_names": {
+     "post_tag": [
+      "لپ تاپ",
+      "تاپ گرافیکی",
+      "خرید لپ",
+      "لپ تاپ گرافیکی",
+      "خرید لپ تاپ",
+      "لپ",
+      "تاپ",
+      "گرافیکی"
+     ]
+    }
+   }
+  }
+ },
+ {
+  "action": "editPost",
+  "data": {
+   "post_id": "102",
+   "content": {
+    "custom_fields": [
+     {
+      "id": "cf1",
+      "key": "_yoast_wpseo_focuskw",
+      "value": "گوشی پرچمدار"
+     }
+    ]
+   }
+  }
+ },
+ {
+  "action": "editPost",
+  "data": {
+   "post_id": "102",
+   "content": {
+    "terms_names": {
+     "post_tag": [
+      "گوشی پرچمدار",
+      "معرفی",
+      "امسال",
+      "گوشی",
+      "پرچمدار",
+      "دوربین",
+      "پیشرفته",
+      "باتری"
+     ]
+    }
+   }
+  }
+ }
+]
