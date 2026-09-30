@@ -419,6 +419,7 @@ def analyze_site(url, pages=8, delay=0.3, verify_ssl=True, step=None, cancel=Non
         "crawl": {"requested": pages, "crawled": len(crawl_pages), "pages": crawl_pages},
         "recommendations": recs,
         "checks": checks.items,
+        "performance_tips": _gen_perf_tips(html_size_kb, ttfb, compression, lazy, large_imgs),
     }
     step("تحلیل کامل شد ✓", "success", 100)
     return report
@@ -494,6 +495,22 @@ def check_sitemap(base, robots_text, verify_ssl):
         if r.ok and ("<loc" in r.text.lower() or "sitemapindex" in r.text.lower()):
             return {"found": True, "url": s, "url_count": len(LOC_RE.findall(r.text))}
     return {"found": False, "url": "", "url_count": 0}
+
+
+def _gen_perf_tips(html_size_kb, ttfb_ms, compression, lazy_count, large_imgs):
+    """تولید نکات عملکردی بر اساس دادههای صفحه."""
+    tips = []
+    if html_size_kb > 300:
+        tips.append(f"حجم HTML زیاد است ({html_size_kb}KB) — کدهای اضافی را حذف یا minify کنید.")
+    if ttfb_ms > 800:
+        tips.append(f"زمان پاسخ سرور کند است ({int(ttfb_ms)}ms) — از کش سمت سرور استفاده کنید.")
+    if not compression:
+        tips.append("فشردهسازی gzip/brotli فعال نیست — آن را در هاست فعال کنید.")
+    if large_imgs:
+        tips.append(f"{len(large_imgs)} تصویر بزرگ شناسایی شد — فشرده‌سازی و تبدیل به WebP پیشنهاد میشود.")
+    if lazy_count == 0 and len([i for i in large_imgs]) > 0:
+        tips.append("برای تصاویر بزرگ از loading=lazy استفاده کنید.")
+    return tips
 
 
 def check_broken_links(links, verify_ssl, cancel):

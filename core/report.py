@@ -71,6 +71,13 @@ def build_html_report(report):
     <tr><td>فشرده‌سازی</td><td>{esc(site.get('compression'))}</td></tr>
     <tr><td>نقشه سایت</td><td>{'✓ ' + esc(report.get('technical', {}).get('sitemap', {}).get('url', '')) if report.get('technical', {}).get('sitemap', {}).get('found') else 'یافت نشد'}</td></tr>"""
 
+    # نقاط عملکردی
+    perf_tips = report.get("performance_tips", [])
+    perf_html = ""
+    if perf_tips:
+        tips_rows = "".join(f'<div class="rec" style="border-right:3px solid #fbbf24"><b>⚡ {esc(t)}</b></div>' for t in perf_tips)
+        perf_html = f'<div class="card"><h2>⚡ نکات عملکردی</h2><div style="display:flex;flex-direction:column;gap:8px">{tips_rows}</div></div>'
+
     css = """
     *{box-sizing:border-box;margin:0;padding:0}
     body{font-family:Vazirmatn,'Segoe UI',Tahoma,sans-serif;background:#f4f6fb;color:#111827;padding:32px 16px;line-height:1.8}
@@ -154,11 +161,13 @@ def build_html_report(report):
 </div>
 
 <div class="card">
-  <h2>📄 صفحات بررسی‌شده</h2>
+  <h2>📄 صفحات بررسیشده</h2>
   <table><tr><th>آدرس</th><th>وضعیت</th><th>کلمات</th><th>H1</th><th>توضیحات</th></tr>{crawl_rows or '<tr><td colspan="5">فقط صفحه اصلی</td></tr>'}</table>
 </div>
 
-<footer>سئو ایجنت — تحلیلگر SEO + GEO | این گزارش به‌صورت خودکار تولید شده است</footer>
+{perf_html}
+
+<footer>سئو ایجنت — تحلیلگر SEO + GEO | این گزارش بهصورت خودکار تولید شده است</footer>
 </div></body></html>"""
 
 

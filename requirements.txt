@@ -1,0 +1,3 @@
+# No external dependencies required - uses Python standard library only
+# For local development with test mocks:
+# python -m pytest  # if installing pytest later

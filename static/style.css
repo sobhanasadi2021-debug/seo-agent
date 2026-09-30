@@ -318,6 +318,10 @@ main { max-width: 1180px; margin: 0 auto; padding: 26px 20px 60px; }
   justify-content: space-between; color: var(--muted); font-size: .8rem; flex-wrap: wrap; gap: 8px;
 }
 
+/* ---------- اسپینر لودینگ ---------- */
+@keyframes spin { to { transform: rotate(360deg); } }
+.spinner { width: 18px; height: 18px; border: 2px solid var(--line); border-top-color: var(--accent); border-radius: 50%; animation: spin .7s linear infinite; display: inline-block; vertical-align: middle; }
+
 /* ---------- ریسپانسیو ---------- */
 @media (max-width: 900px) {
   .grid-2, .grid-3, .grid-4 { grid-template-columns: 1fr; }
@@ -325,6 +329,19 @@ main { max-width: 1180px; margin: 0 auto; padding: 26px 20px 60px; }
   .quick-actions { grid-template-columns: 1fr; }
   .hero h1 { font-size: 1.45rem; }
   .result-head-card { gap: 14px; }
+}
+
+/* موبایل: منوی همبرگری */
+.hamburger { display: none; }
+@media (max-width: 768px) {
+  .nav { display: none; flex-basis: 100%; flex-direction: column; background: var(--card); border-bottom: 1px solid var(--line); }
+  .nav.open { display: flex; }
+  .hamburger { display: block; width: 44px; height: 44px; border-radius: 10px; border: 1px solid var(--line); background: var(--card); color: var(--text); font-size: 1.3rem; cursor: pointer; }
+  .hero-run { flex-direction: column; }
+  .hero-run input { width: 100%; }
+  .btn-row { flex-wrap: wrap; }
+  .toasts { left: 10px; right: 10px; bottom: 10px; }
+  .toast { max-width: 100%; }
 }
 
 /* ---------- اسکرول‌بار ---------- */

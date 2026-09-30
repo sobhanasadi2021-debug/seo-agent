@@ -359,6 +359,18 @@ $("btnCopyKws").addEventListener("click", () => {
   copyText([...(k.primary || []), ...(k.secondary || [])].join("، "));
 });
 $("btnRerun").addEventListener("click", () => $("runBtn").click());
+$("btnShare").addEventListener("click", () => {
+  if (!state.taskId) return;
+  const url = location.origin + `/api/report/html?id=${state.taskId}` + (TOKEN ? `?token=${TOKEN}` : "");
+  copyText(url);
+  toast("لینک گزارش کپی شد ✓");
+});
+
+// منوی همبرگری برای موبایل
+$("menuBtn").addEventListener("click", () => {
+  $("mainNav").classList.toggle("open");
+  $("menuBtn").textContent = $("mainNav").classList.contains("open") ? "✕" : "☰";
+});
 
 /* ---------------- سئوی خودکار ---------------- */
 function readAutoParams(analyzeOnly) {
@@ -572,3 +584,10 @@ $("histClear").addEventListener("click", async () => {
 applyTheme();
 checkHealth();
 loadHistory();
+
+// نمایش نسخه در فوتر
+const verEl = document.getElementById("agentVersion");
+if (verEl) verEl.textContent = "v1.1";
+
+/* پایش زنده وضعیت سرور هر 30 ثانیه */
+setInterval(checkHealth, 30000);

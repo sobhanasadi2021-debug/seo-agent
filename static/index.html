@@ -25,6 +25,7 @@
     <button class="nav-btn" data-tab="guide">📖 راهنما</button>
   </nav>
   <div class="top-actions">
+    <button class="hamburger" id="menuBtn" title="منو">☰</button>
     <span id="serverDot" class="dot dot-off" title="وضعیت سرور"></span>
     <button id="tokenBtn" class="icon-btn" title="ورود/تغییر توکن دسترسی">🔑</button>
     <button id="themeBtn" class="icon-btn" title="تغییر تم روشن/تاریک">🌙</button>
@@ -129,6 +130,7 @@
           <button id="btnCsv" class="btn btn-outline btn-sm">⬇ CSV (اکسل)</button>
           <button id="btnCopy" class="btn btn-outline btn-sm">📋 کپی متن گزارش</button>
           <button id="btnRerun" class="btn btn-ghost btn-sm">🔄 تحلیل مجدد</button>
+          <button id="btnShare" class="btn btn-ghost btn-sm" title="اشتراک‌گذاری لینک گزارش">🔗 اشتراک</button>
         </div>
       </div>
     </div>
@@ -202,15 +204,20 @@
     </div>
 
     <div class="card" id="crawlCard">
-      <div class="card-head"><h3>📄 صفحات بررسی‌شده</h3></div>
+      <div class="card-head"><h3>📄 صفحات بررسیشده</h3></div>
       <div class="table-wrap"><table class="table" id="crawlTable">
         <thead><tr><th>آدرس</th><th>وضعیت</th><th>کلمات</th><th>H1</th><th>توضیحات</th><th>تصاویر بدون alt</th></tr></thead>
         <tbody></tbody>
       </table></div>
       <div id="brokenBox" class="broken-box hidden">
-        <h4>🔗 لینک‌های خراب</h4>
+        <h4>🔗 لینکهای خراب</h4>
         <ul id="brokenList"></ul>
       </div>
+    </div>
+
+    <div class="card hidden" id="perfCard">
+      <div class="card-head"><h3>⚡ نکات عملکردی</h3></div>
+      <div id="perfTips" class="recs"></div>
     </div>
   </div>
 </section>
@@ -360,7 +367,7 @@
 
 <footer class="footer">
   <span>سئو ایجنت — تحلیلگر SEO + GEO</span>
-  <span class="muted" dir="ltr">127.0.0.1:8791</span>
+  <span class="muted" dir="ltr" id="agentVersion">v1.0</span>
 </footer>
 
 <div id="toasts" class="toasts"></div>
