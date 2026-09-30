@@ -11,6 +11,6 @@ jobs:
     steps:
       - name: Ping /api/health
         run: |
-          curl -fsS --max-time 30 -o /dev/null "${{ secrets.RENDER_URL }}/api/health" \
+          curl -fsS --max-time 30 -o /dev/null "https://seo-agent-2w7u.onrender.com/api/health" \
             && echo "pong $(date -u)" \
             || echo "ping failed (service may be redeploying)"
